@@ -33,8 +33,9 @@ function updateCamera() {
 }
 
 function onTransform( delta ) {
-	lon -= delta.translateX / 10;
-	lat += delta.translateY / 10;
+	var scale = camera.fov / 360;
+	lon -= delta.translateX * scale;
+	lat += delta.translateY * scale;
 	setFOV(camera.fov / delta.scale);
 }
 

@@ -24,7 +24,7 @@ function updateCamera() {
 	camera.lookAt( camera.target );
 
 	// distortion
-	//camera.position.copy( camera.target ).negate();
+	camera.position.copy( camera.target ).negate();
 
 }
 

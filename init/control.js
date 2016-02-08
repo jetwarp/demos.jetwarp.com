@@ -6,6 +6,11 @@ lon = 0, onMouseDownLon = 0,
 lat = 0, onMouseDownLat = 0,
 phi = 0, theta = 0;
 
+function setFOV(newFOV) {
+	camera.fov = Math.max(1, Math.min(90, newFOV));
+	camera.updateProjectionMatrix();
+}
+
 function updateCamera() {
 	if ( isUserInteracting === false ) {
 
@@ -25,25 +30,22 @@ function updateCamera() {
 
 	// distortion
 	camera.position.copy( camera.target ).negate();
-
 }
 
 function onTransform( delta ) {
 	lon -= delta.translateX / 10;
 	lat += delta.translateY / 10;
-	camera.fov /= delta.scale;
-	camera.updateProjectionMatrix();
+	setFOV(camera.fov / delta.scale);
 }
 
 chiral(onTransform).attach(window);
 
 function onWheel( event ) {
 	if (event.deltaMode == 0) { // pixel delta
-		camera.fov += event.deltaY / 5;
+		setFOV(camera.fov + event.deltaY / 5);
 	} else { // line (or page) delta
-		camera.fov += event.deltaY;
+		setFOV(camera.fov + event.deltaY);
 	}
-	camera.updateProjectionMatrix();
 }
 
 window.addEventListener('wheel', onWheel);

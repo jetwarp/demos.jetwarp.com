@@ -1,4 +1,4 @@
-/* global THREE camera */
+/* global THREE camera chiral */
 
 var isUserInteracting = false,
 onMouseDownMouseX = 0, onMouseDownMouseY = 0,
@@ -23,71 +23,27 @@ function updateCamera() {
 
 	camera.lookAt( camera.target );
 
-	/*
 	// distortion
-	camera.position.copy( camera.target ).negate();
-	*/
-}
-
-document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-document.addEventListener( 'mouseup', onDocumentMouseUp, false );
-document.addEventListener( 'mousewheel', onDocumentMouseWheel, false );
-document.addEventListener( 'MozMousePixelScroll', onDocumentMouseWheel, false);
-
-function onDocumentMouseDown( event ) {
-
-	event.preventDefault();
-
-	isUserInteracting = true;
-
-	onPointerDownPointerX = event.clientX;
-	onPointerDownPointerY = event.clientY;
-
-	onPointerDownLon = lon;
-	onPointerDownLat = lat;
+	//camera.position.copy( camera.target ).negate();
 
 }
 
-function onDocumentMouseMove( event ) {
-
-	if ( isUserInteracting === true ) {
-
-		lon = ( onPointerDownPointerX - event.clientX ) * 0.1 + onPointerDownLon;
-		lat = ( event.clientY - onPointerDownPointerY ) * 0.1 + onPointerDownLat;
-
-	}
-
-}
-
-function onDocumentMouseUp( event ) {
-
-	isUserInteracting = false;
-
-}
-
-function onDocumentMouseWheel( event ) {
-
-	// WebKit
-
-	if ( event.wheelDeltaY ) {
-
-		camera.fov -= event.wheelDeltaY * 0.05;
-
-	// Opera / Explorer 9
-
-	} else if ( event.wheelDelta ) {
-
-		camera.fov -= event.wheelDelta * 0.05;
-
-	// Firefox
-
-	} else if ( event.detail ) {
-
-		camera.fov += event.detail * 1.0;
-
-	}
-
+function onTransform( delta ) {
+	lon -= delta.translateX / 10;
+	lat += delta.translateY / 10;
+	camera.fov /= delta.scale;
 	camera.updateProjectionMatrix();
-
 }
+
+chiral(onTransform).attach(window);
+
+function onWheel( event ) {
+	if (event.deltaMode == 0) { // pixel delta
+		camera.fov += event.deltaY / 5;
+	} else { // line (or page) delta
+		camera.fov += event.deltaY;
+	}
+	camera.updateProjectionMatrix();
+}
+
+window.addEventListener('wheel', onWheel);

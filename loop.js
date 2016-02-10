@@ -1,4 +1,4 @@
-/* global THREE requestAnimationFrame renderer scene camera updateCamera */
+/* global THREE requestAnimationFrame renderScene updateCamera */
 
 function animate() {
   // TODO: Why is requestAnimationFrame *before* updates?
@@ -8,7 +8,7 @@ function animate() {
 
 function update() {
   updateCamera();
-	renderer.render( scene, camera );
+  renderScene();
 }
 
 animate();

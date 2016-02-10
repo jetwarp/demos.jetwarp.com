@@ -1,4 +1,4 @@
-/* global THREE scene */
+/* global THREE scene camera */
 
 var container = document.getElementById('container');
 var renderer = new THREE.WebGLRenderer();
@@ -9,3 +9,7 @@ container.appendChild(renderer.domElement);
 window.addEventListener('resize', function resizeRendererOnWindowResize() {
 	renderer.setSize(window.innerWidth, window.innerHeight);
 });
+
+function renderScene() {
+  renderer.render(scene, camera);
+}

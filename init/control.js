@@ -1,41 +1,34 @@
-/* global THREE camera chiral */
+/* global THREE camera chiral setVecFromLatLon
+	getDestForCameraPoint getDestForLatLon loadRoom */
 
-var isUserInteracting = false,
-onMouseDownMouseX = 0, onMouseDownMouseY = 0,
-lon = 0, onMouseDownLon = 0,
-lat = 0, onMouseDownLat = 0,
-phi = 0, theta = 0;
+var isUserInteracting = false, target = new THREE.Vector3(0, 0, 0),
+	lat = 0, lon = 0;
 
 function setFOV(newFOV) {
 	camera.fov = Math.max(1, Math.min(90, newFOV));
 	camera.updateProjectionMatrix();
 }
 
+function setLatitude(newLat) {
+	lat = Math.max(-85, Math.min(85, newLat));
+}
+
 function updateCamera() {
 	if ( isUserInteracting === false ) {
-
 		//TODO: drift into gyroscope-based control based on tilt delta?
-
 	}
 
-	lat = Math.max( - 85, Math.min( 85, lat ) );
-	phi = THREE.Math.degToRad( 90 - lat );
-	theta = THREE.Math.degToRad( lon );
-
-	camera.target.x = 500 * Math.sin( phi ) * Math.cos( theta );
-	camera.target.y = 500 * Math.cos( phi );
-	camera.target.z = 500 * Math.sin( phi ) * Math.sin( theta );
-
-	camera.lookAt( camera.target );
+	setVecFromLatLon(target, lat, lon);
+	camera.lookAt(target);
 
 	// distortion
-	camera.position.copy( camera.target ).negate();
+	camera.position.copy(target).negate();
 }
 
 function onTransform( delta ) {
 	var scale = camera.fov / 360;
 	lon -= delta.translateX * scale;
-	lat += delta.translateY * scale;
+	setLatitude(lat + delta.translateY * scale);
 	setFOV(camera.fov / delta.scale);
 }
 
@@ -50,3 +43,18 @@ function onWheel( event ) {
 }
 
 window.addEventListener('wheel', onWheel);
+
+var mousePoint = new THREE.Vector2();
+
+function onClick( event ) {
+	mousePoint.x = event.clientX;
+	mousePoint.y = event.clientY;
+	//var dest = getDestForCameraPoint(camera, mousePoint);
+	//TODO: adjust to match clicked spot
+	var dest = getDestForLatLon(lat, lon);
+	if (dest) loadRoom(dest);
+	console.log(dest);
+}
+
+//TODO: make this on pointerup, when we don't move much
+window.addEventListener('click', onClick);

@@ -7,13 +7,11 @@ camera.target = new THREE.Vector3( 0, 0, 0 );
 
 scene = new THREE.Scene();
 
-var geometry = new THREE.SphereGeometry( 500, 60, 40 );
-geometry.scale( - 1, 1, 1 );
+var roomGeometry = new THREE.SphereGeometry( 500, 60, 40 );
+roomGeometry.scale( - 1, 1, 1 );
 
-var material = new THREE.MeshBasicMaterial( {
-	map: THREE.ImageUtils.loadTexture( 'panos/gallery.jpg' )
-} );
+var panoMaterial = new THREE.MeshBasicMaterial();
 
-mesh = new THREE.Mesh( geometry, material );
+mesh = new THREE.Mesh( roomGeometry, panoMaterial );
 
 scene.add( mesh );

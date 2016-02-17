@@ -49,9 +49,9 @@ var mousePoint = new THREE.Vector2();
 function onClick( event ) {
 	mousePoint.x = event.clientX;
 	mousePoint.y = event.clientY;
-	//var dest = getDestForCameraPoint(camera, mousePoint);
+	var dest = getDestForCameraPoint(camera, mousePoint);
 	//TODO: adjust to match clicked spot
-	var dest = getDestForLatLon(lat, lon);
+	//var dest = getDestForLatLon(lat, lon);
 	if (dest) loadRoom(dest);
 	console.log(dest);
 }

@@ -1,4 +1,6 @@
-/* global THREE scene panoMaterial setVecFromLatLon */
+/* global THREE scene:true panoMaterial setVecFromLatLon */
+
+var scene;
 
 var rooms = {
   gallery: {
@@ -30,22 +32,34 @@ var rooms = {
 var waypointSphereDestinationsByUUID = {};
 var waypointSphereGeometry = new THREE.SphereGeometry(50, 20, 20);
 var waypointSphereMaterial = new THREE.MeshBasicMaterial({color: '#ff0000'});
+var roomGeometry = new THREE.SphereGeometry(500, 60, 40);
+  roomGeometry.scale(-1, 1, 1);
 
-function populateRoom(roomObj) {
+function populateRoom(roomName) {
+  var roomObj = rooms[roomName];
+  scene = new THREE.Scene();
+  var panoMaterial = new THREE.MeshBasicMaterial({
+    map: new THREE.TextureLoader().load('panos/' + roomName + '.jpg')
+  });
+  var mesh = new THREE.Mesh( roomGeometry, panoMaterial );
+  scene.add( mesh );
+
   var waypointSpheres = new THREE.Object3D();
   for (var i = 0; i < roomObj.waypoints.length; i++) {
     var waypoint = roomObj.waypoints[i];
     var waypointSphere = new THREE.Mesh(
       waypointSphereGeometry, waypointSphereMaterial);
     setVecFromLatLon(waypointSphere.position, waypoint.lat, waypoint.lon);
+    waypointSphere.updateMatrixWorld();
     waypointSphereDestinationsByUUID[waypointSphere.uuid] = waypoint.dest;
     waypointSpheres.add(waypointSphere);
   }
   roomObj.waypointSpheres = waypointSpheres;
+  scene.add(waypointSpheres);
+  roomObj.scene = scene;
 }
 
-Object.keys(rooms).map(function(name){return rooms[name]})
-  .forEach(populateRoom);
+Object.keys(rooms).forEach(populateRoom);
 
 var currentRoom;
 
@@ -76,15 +90,9 @@ function getDestForLatLon(lat, lon) {
   }
 }
 
-// now that I think about it we could just have each room be a different scene...
-// :effort:
 function loadRoom(roomName) {
-  if (currentRoom) {
-    scene.remove(rooms[currentRoom].waypointSpheres);
-  }
-  panoMaterial.map = THREE.ImageUtils.loadTexture('panos/' + roomName + '.jpg');
-  scene.add(rooms[roomName].waypointSpheres);
   currentRoom = roomName;
+  scene = rooms[roomName].scene;
 }
 
 loadRoom('gallery');

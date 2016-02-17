@@ -47,13 +47,10 @@ window.addEventListener('wheel', onWheel);
 var mousePoint = new THREE.Vector2();
 
 function onClick( event ) {
-	mousePoint.x = event.clientX;
-	mousePoint.y = event.clientY;
+	mousePoint.x = (event.clientX / window.innerWidth) * 2 - 1;
+	mousePoint.y = (event.clientY / window.innerHeight) * -2 + 1;
 	var dest = getDestForCameraPoint(camera, mousePoint);
-	//TODO: adjust to match clicked spot
-	//var dest = getDestForLatLon(lat, lon);
 	if (dest) loadRoom(dest);
-	console.log(dest);
 }
 
 //TODO: make this on pointerup, when we don't move much

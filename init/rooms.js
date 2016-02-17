@@ -72,20 +72,7 @@ function getDestForCameraPoint(camera, point) {
     var intersects = raycaster.intersectObjects(
       rooms[currentRoom].waypointSpheres.children);
     if (intersects.length > 0) {
-      return waypointSphereDestinationsByUUID[intersects[0].uuid];
-    }
-  }
-}
-
-function getDestForLatLon(lat, lon) {
-  if (currentRoom) {
-    var waypoints = rooms[currentRoom].waypoints;
-    for (var i = 0; i < waypoints.length; i++) {
-      var dLat = lat - waypoints[i].lat;
-      var dLon = (lon - waypoints[i].lon + 360) % 360;
-      if (dLat*dLat + dLon*dLon < 25) {
-        return waypoints[i].dest;
-      }
+      return waypointSphereDestinationsByUUID[intersects[0].object.uuid];
     }
   }
 }

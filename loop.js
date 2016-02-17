@@ -2,8 +2,8 @@
 
 function animate() {
   // TODO: Why is requestAnimationFrame *before* updates?
-	requestAnimationFrame( animate );
-	update();
+  requestAnimationFrame( animate );
+  update();
 }
 
 function update() {

@@ -7,7 +7,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 container.appendChild(renderer.domElement);
 
 window.addEventListener('resize', function resizeRendererOnWindowResize() {
-	renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
 function renderScene() {

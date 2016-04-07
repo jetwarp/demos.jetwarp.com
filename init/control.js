@@ -13,18 +13,6 @@ function setLatitude(newLat) {
   lat = Math.max(-85, Math.min(85, newLat));
 }
 
-function updateCamera() {
-  if ( isUserInteracting === false ) {
-    //TODO: drift into gyroscope-based control based on tilt delta?
-  }
-
-  setVecFromLatLon(target, lat, lon);
-  camera.lookAt(target);
-
-  // distortion
-  camera.position.copy(target).negate();
-}
-
 function onTransform( delta ) {
   var scale = camera.fov / 360;
   lon -= delta.translateX * scale;
@@ -32,7 +20,8 @@ function onTransform( delta ) {
   setFOV(camera.fov / delta.scale);
 }
 
-chiral(onTransform).attach(window);
+// turned off in favor of VRControl
+//chiral(onTransform).attach(window);
 
 function onWheel( event ) {
   if (event.deltaMode == 0) { // pixel delta
@@ -42,11 +31,12 @@ function onWheel( event ) {
   }
 }
 
-window.addEventListener('wheel', onWheel);
+//window.addEventListener('wheel', onWheel);
 
 var mousePoint = new THREE.Vector2();
 
 function onClick( event ) {
+  // TODO: raycast at 0,0 in VR mode
   mousePoint.x = (event.clientX / window.innerWidth) * 2 - 1;
   mousePoint.y = (event.clientY / window.innerHeight) * -2 + 1;
   var dest = getDestForCameraPoint(camera, mousePoint);
@@ -55,3 +45,6 @@ function onClick( event ) {
 
 //TODO: make this on pointerup, when we don't move much
 window.addEventListener('click', onClick);
+
+// Apply VR headset positional data to camera.
+var controls = new THREE.VRControls(camera);

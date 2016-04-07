@@ -1,4 +1,4 @@
-/* global THREE scene camera */
+/* global THREE camera */
 
 var container = document.getElementById('container');
 var renderer = new THREE.WebGLRenderer();
@@ -6,10 +6,15 @@ renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
 container.appendChild(renderer.domElement);
 
-window.addEventListener('resize', function resizeRendererOnWindowResize() {
-  renderer.setSize(window.innerWidth, window.innerHeight);
-});
+// Apply VR stereo rendering to renderer.
+var effect = new THREE.VREffect(renderer);
+effect.setSize(window.innerWidth, window.innerHeight);
 
-function renderScene() {
-  renderer.render(scene, camera);
+function onResize() {
+  effect.setSize(window.innerWidth, window.innerHeight);
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
 }
+
+window.addEventListener('resize', onResize);
+window.addEventListener('vrdisplaypresentchange', onResize);

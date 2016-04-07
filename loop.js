@@ -1,14 +1,25 @@
-/* global THREE requestAnimationFrame renderScene updateCamera */
+/* global performance requestAnimationFrame controls manager scene camera */
 
-function animate() {
-  // TODO: Why is requestAnimationFrame *before* updates?
-  requestAnimationFrame( animate );
-  update();
+(function(){
+function update(delta) {
+  // Update VR headset position and apply to camera.
+  controls.update();
 }
 
-function update() {
-  updateCamera();
-  renderScene();
+// Request animation frame loop function
+var lastRender = 0;
+function animate(timestamp) {
+  var delta = Math.min(timestamp - lastRender, 500);
+  lastRender = timestamp;
+
+  update(delta);
+
+  // Render the scene through the manager.
+  manager.render(scene, camera, timestamp);
+
+  requestAnimationFrame(animate);
 }
 
-animate();
+// Kick off animation loop
+animate(performance ? performance.now() : Date.now());
+})();

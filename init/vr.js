@@ -6,3 +6,5 @@ var params = {
   isUndistorted: false // Default: false.
 };
 var manager = new WebVRManager(renderer, effect, params);
+
+// TODO: Show reticle on modechange

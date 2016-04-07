@@ -1,5 +1,5 @@
-/* global THREE camera chiral setVecFromLatLon
-  getDestForCameraPoint getDestForLatLon loadRoom */
+/* global THREE camera manager WebVRManager chiral getDestForCameraPoint
+   loadRoom */
 
 var isUserInteracting = false, target = new THREE.Vector3(0, 0, 0),
   lat = 0, lon = 0;
@@ -36,9 +36,18 @@ function onWheel( event ) {
 var mousePoint = new THREE.Vector2();
 
 function onClick( event ) {
-  // TODO: raycast at 0,0 in VR mode
-  mousePoint.x = (event.clientX / window.innerWidth) * 2 - 1;
-  mousePoint.y = (event.clientY / window.innerHeight) * -2 + 1;
+  // If in VR
+  if (manager.mode == WebVRManager.Modes.VR) {
+    // Always fire down the center on click
+    mousePoint.x = mousePoint.y = 0;
+
+  // If not in VR
+  } else {
+    // Fire at the clicked point
+    mousePoint.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mousePoint.y = (event.clientY / window.innerHeight) * -2 + 1;
+  }
+
   var dest = getDestForCameraPoint(camera, mousePoint);
   if (dest) loadRoom(dest);
 }

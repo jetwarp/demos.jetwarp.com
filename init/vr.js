@@ -21,12 +21,12 @@ var reticle = new THREE.Mesh(reticleGeometry, new THREE.MeshBasicMaterial( {
   color: '#ffffff',
   morphTargets: true,
   fog: false,
-  visible: false
+  frustumCulled: false
   //depthWrite: false,
   //depthTest: false
 }));
 
-reticle.position.set(0,0, -(camera.near+0.1));
+reticle.position.set(0,0, -1);
 
 camera.add(reticle);
 
@@ -47,6 +47,6 @@ function updateReticle(delta) {
       growSize = Math.min(growSize - accel, 0);
     }
 
-    reticle.morphTargetInfluences[ 0 ] = growSize;
+    reticle.morphTargetInfluences[0] = growSize;
   }
 }

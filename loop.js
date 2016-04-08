@@ -1,9 +1,11 @@
-/* global performance requestAnimationFrame controls manager scene camera */
+/* global performance requestAnimationFrame controls manager scene camera
+   updateReticle */
 
 (function(){
 function update(delta) {
   // Update VR headset position and apply to camera.
   controls.update();
+  updateReticle(delta);
 }
 
 // Request animation frame loop function

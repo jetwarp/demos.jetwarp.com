@@ -64,8 +64,18 @@ Object.keys(rooms).forEach(populateRoom);
 var currentRoom;
 
 var raycaster = new THREE.Raycaster();
+var centerPoint = new THREE.Vector2(0, 0);
 
-// raycasting is no bueno
+// for reticle hover state
+function lookingAtWaypoint(camera) {
+  if (currentRoom) {
+    raycaster.setFromCamera(centerPoint, camera);
+    var intersects = raycaster.intersectObjects(
+      rooms[currentRoom].waypointSpheres.children);
+    return (intersects.length > 0);
+  }
+}
+
 function getDestForCameraPoint(camera, point) {
   if (currentRoom) {
     raycaster.setFromCamera(point, camera);

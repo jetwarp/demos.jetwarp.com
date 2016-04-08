@@ -44,7 +44,7 @@ function updateReticle(delta) {
     if (lookingAtWaypoint(camera)) {
       growSize = Math.min(growSize + accel, 1);
     } else {
-      growSize = Math.min(growSize - accel, 0);
+      growSize = Math.max(growSize - accel, 0);
     }
 
     reticle.morphTargetInfluences[0] = growSize;

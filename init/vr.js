@@ -25,6 +25,9 @@ var reticle = new THREE.Mesh(reticleGeometry, new THREE.MeshBasicMaterial( {
   //depthWrite: false,
   //depthTest: false
 }));
+
+reticle.position.set(0,0, -(camera.near+0.1));
+
 camera.add(reticle);
 
 manager.on('modechange', function activateReticle(newMode) {

@@ -27,7 +27,7 @@ var reticle = new THREE.Mesh(reticleGeometry, new THREE.MeshBasicMaterial( {
 
 reticle.frustumCulled = false;
 
-reticle.position.set(0,0, -1);
+reticle.position.set(0, 0, -1);
 
 camera.add(reticle);
 
@@ -35,7 +35,7 @@ manager.on('modechange', function activateReticle(newMode) {
   reticle.visible = (newMode == WebVRManager.Modes.VR);
 });
 
-var growSpeed = 5;
+var growSpeed = 1/100;
 var growSize = 0;
 
 function updateReticle(delta) {

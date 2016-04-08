@@ -21,10 +21,11 @@ var reticle = new THREE.Mesh(reticleGeometry, new THREE.MeshBasicMaterial( {
   color: '#ffffff',
   morphTargets: true,
   fog: false,
-  frustumCulled: false
   //depthWrite: false,
   //depthTest: false
 }));
+
+reticle.frustumCulled = false;
 
 reticle.position.set(0,0, -1);
 

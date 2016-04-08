@@ -1,4 +1,4 @@
-/* global THREE scene:true panoMaterial setVecFromLatLon */
+/* global THREE scene panoMaterial setVecFromLatLon */
 
 var scene;
 
@@ -37,12 +37,12 @@ var roomGeometry = new THREE.SphereGeometry(500, 60, 40);
 
 function populateRoom(roomName) {
   var roomObj = rooms[roomName];
-  scene = new THREE.Scene();
+  var roomGroup = new THREE.Object3D();
   var panoMaterial = new THREE.MeshBasicMaterial({
     map: new THREE.TextureLoader().load('panos/' + roomName + '.jpg')
   });
   var mesh = new THREE.Mesh( roomGeometry, panoMaterial );
-  scene.add( mesh );
+  roomGroup.add( mesh );
 
   var waypointSpheres = new THREE.Object3D();
   for (var i = 0; i < roomObj.waypoints.length; i++) {
@@ -55,13 +55,16 @@ function populateRoom(roomName) {
     waypointSpheres.add(waypointSphere);
   }
   roomObj.waypointSpheres = waypointSpheres;
-  scene.add(waypointSpheres);
-  roomObj.scene = scene;
+  roomGroup.add(waypointSpheres);
+  roomObj.group = roomGroup;
 }
 
 Object.keys(rooms).forEach(populateRoom);
 
 var currentRoom;
+var currentRoomGroup = new THREE.Object3D();
+
+scene.add(currentRoomGroup);
 
 var raycaster = new THREE.Raycaster();
 var centerPoint = new THREE.Vector2(0, 0);
@@ -89,7 +92,7 @@ function getDestForCameraPoint(camera, point) {
 
 function loadRoom(roomName) {
   currentRoom = roomName;
-  scene = rooms[roomName].scene;
+  currentRoomGroup.children[0] = rooms[roomName].group;
 }
 
 loadRoom('gallery');

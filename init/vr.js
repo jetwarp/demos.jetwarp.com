@@ -41,7 +41,7 @@ function updateReticle(delta) {
   if (reticle.visible) {
     var accel = delta * growSpeed;
 
-    if (lookingAtWaypoint) {
+    if (lookingAtWaypoint(camera)) {
       growSize = Math.min(growSize + accel, 1);
     } else {
       growSize = Math.min(growSize - accel, 0);

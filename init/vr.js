@@ -31,9 +31,12 @@ reticle.position.set(0, 0, -1);
 
 camera.add(reticle);
 
-manager.on('modechange', function activateReticle(newMode) {
+function setReticleVisibility(newMode) {
   reticle.visible = (newMode == WebVRManager.Modes.VR);
-});
+}
+
+manager.on('modechange', setReticleVisibility);
+setReticleVisibility(manager.mode);
 
 var growSpeed = 1/100;
 var growSize = 0;

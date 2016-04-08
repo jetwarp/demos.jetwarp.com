@@ -14,9 +14,9 @@ function reticleRing(innerRadius, outerRadius) {
     0, Math.PI * 2 );
 }
 
-var reticleGeometry = reticleRing(0.0001, 0.003);
+var reticleGeometry = reticleRing(0.0001, 0.005);
 reticleGeometry.morphTargets.push({name: "expansion", vertices:
-  reticleRing(0.02, 0.024).vertices});
+  reticleRing(0.02, 0.025).vertices});
 var reticle = new THREE.Mesh(reticleGeometry, new THREE.MeshBasicMaterial( {
   color: '#ffffff',
   morphTargets: true,
@@ -38,7 +38,7 @@ function setReticleVisibility(newMode) {
 manager.on('modechange', setReticleVisibility);
 setReticleVisibility(manager.mode);
 
-var growSpeed = 1/100;
+var growSpeed = 1/125;
 var growSize = 0;
 
 function updateReticle(delta) {

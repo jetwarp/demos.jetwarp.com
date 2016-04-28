@@ -36,6 +36,17 @@ var roomGeometry = new THREE.SphereGeometry(500, 60, 40);
   roomGeometry.scale(-1, 1, 1);
 var cdnPath = 'https://objects.muvaster.com/muvaster-cdn/demos/racer/';
 
+// Attempt to avoid the need for CORS when loaded from an appropriate domain
+function loosenDomainTo(baseDomain) {
+  // If the current domain is a subdirectory of the base domain
+  if (document.domain.slice(-baseDomain.length-1) == '.' + baseDomain) {
+    // Adjust to the base domain
+    document.domain = baseDomain;
+  }
+}
+
+loosenDomainTo('muvaster.com');
+
 function populateRoom(roomName) {
   var roomObj = rooms[roomName];
   var roomGroup = new THREE.Object3D();

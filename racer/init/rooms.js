@@ -36,11 +36,14 @@ var roomGeometry = new THREE.SphereGeometry(500, 60, 40);
   roomGeometry.scale(-1, 1, 1);
 var cdnPath = 'https://objects.muvaster.com/muvaster-cdn/demos/racer/';
 
+var loader = new THREE.TextureLoader();
+loader.crossOrigin = 'anonymous';
+
 function populateRoom(roomName) {
   var roomObj = rooms[roomName];
   var roomGroup = new THREE.Object3D();
   var panoMaterial = new THREE.MeshBasicMaterial({
-    map: new THREE.TextureLoader().load(cdnPath + roomName + '.jpg')
+    map: loader.load(cdnPath + roomName + '.jpg')
   });
   var mesh = new THREE.Mesh( roomGeometry, panoMaterial );
   roomGroup.add( mesh );

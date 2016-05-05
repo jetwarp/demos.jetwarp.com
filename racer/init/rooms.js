@@ -34,7 +34,8 @@ var waypointSphereGeometry = new THREE.SphereGeometry(50, 20, 20);
 var waypointSphereMaterial = new THREE.MeshBasicMaterial({color: '#ff0000'});
 var roomGeometry = new THREE.SphereGeometry(500, 60, 40);
   roomGeometry.scale(-1, 1, 1);
-var cdnPath = 'https://objects.muvaster.com/muvaster-cdn/demos/racer/';
+var cdnPath =
+  'https://objects-us-west-1.dream.io/jetwarp-cdn/demos/racer/panos';
 
 var loader = new THREE.TextureLoader();
 loader.crossOrigin = 'anonymous';

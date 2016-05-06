@@ -41,7 +41,8 @@ function populateRoom(roomObj) {
 }
 
 function populateRooms(doc) {
-  return doc.rooms.forEach(populateRoom);
+  doc.rooms.forEach(populateRoom);
+  return loadRoom(doc.rooms[0].room);
 }
 
 var currentRoom;

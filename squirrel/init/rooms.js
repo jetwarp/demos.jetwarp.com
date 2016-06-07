@@ -107,8 +107,8 @@ function makePlate(plate) {
 var waypointDistance = 512;
 
 var waypointSphereDestinationsByUUID = {};
-var waypointSphereGeometry = new THREE.SphereGeometry(50, 20, 20);
-var waypointSphereMaterial = new THREE.MeshBasicMaterial({color: '#ff0000'});
+var waypointSphereGeometry = new THREE.SphereGeometry(20, 20, 20);
+var waypointSphereMaterial = new THREE.MeshBasicMaterial({color: '#00ffff'});
 
 function makeWaypointSphere(waypoint) {
   var waypointSphere = new THREE.Mesh(

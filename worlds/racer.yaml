@@ -4,22 +4,47 @@ cdn:
 rooms:
 
 - room: gallery
-  waypoints: [
-    { lat: 0,
-      lon: 340,
-      dest: 'bar' }]
+  waypoints:
+  - lat: 0
+    lon: 340
+    dest: bar
 
 - room: bar
-  waypoints: [
-    { lat: 0,
-      lon: 180,
-      dest: 'backroom' },
-    { lat: 0,
-      lon: 50,
-      dest: 'gallery' }]
+  waypoints:
+  - lat: 0
+    lon: 180
+    dest: backroom
+  - lat: 0
+    lon: 50
+    dest: gallery
+  plates:
+  - lat: -32
+    lon: 234
+    title: Rough Prototyping
+    body: >
+      As this demo was put together as a rough proof-of-concept for a Startup
+      Weekend prototype, rather than using the specialized 360-degree camera we
+      use for all our current shoots, we had to assemble it with whatever
+      equipment we already had on hand. These panoramas were assembled, shot by
+      shot, using the Photo Sphere function of the stock Android camera app.
+      Although this yields a largely serviceable capture of a room's
+      appearance, its moment-to-moment and positional-sensor-reliant nature
+      did lead to some errors - such as these repeated corners and vanishing
+      faces.
 
 - room: backroom
-  waypoints: [
-    { lat: 0,
-      lon: 180,
-      dest: 'bar' }]
+  waypoints:
+  - lat: 0
+    lon: 180
+    dest: bar
+  plates:
+  - lat: -32
+    lon: 234
+    title: Hole in the World
+    body: >
+      This completely-black gap in this panorama is probably the worst artifact
+      of our early phone-based capture experiment. Although we did have another
+      panorama of this room without a blacked-out region, the angle it was
+      taken from hid most of the room's details - so, the decision was made to
+      stick with the reshoot from a more interesting position, in spite of its
+      stitching-based flaws.

@@ -29,8 +29,8 @@ rooms:
       shot, using the Photo Sphere function of the stock Android camera app.
       Although this yields a largely serviceable capture of a room's
       appearance, its moment-to-moment and positional-sensor-reliant nature
-      did lead to some errors - such as these repeated corners and vanishing
-      faces.
+      did lead to some errors - such as patrons' vanishing faces, or the
+      displaced duplicate corner above.
 
 - room: backroom
   waypoints:

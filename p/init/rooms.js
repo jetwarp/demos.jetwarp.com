@@ -196,13 +196,23 @@ function loadRoom(roomName) {
 
 // init from location hash
 
-if (location.hash.slice(0,2) == '#?') {
+function ensureTrailingSlash(str) {
+  return str.slice(-1) != '/' ? str + '/' : str;
+}
+
+if (location.hash.slice(0,2) == '#/') {
+  fetch('/worlds/' + location.hash.slice(2) + '.yaml')
+    .then(function(res) {
+      return res.text();
+    }).then(function(body){
+      var doc = jsyaml.safeLoad(body);
+      cdnPath = ensureTrailingSlash(doc.cdn.base);
+      return populateRooms(doc);
+    });
+} else if (location.hash.slice(0,2) == '#?') {
   var hashq = Loquate(location.hash.slice(2));
   if (hashq.from) {
-    cdnPath = hashq.from;
-    if (cdnPath.slice(-1) != '/') {
-      cdnPath += '/';
-    }
+    cdnPath = ensureTrailingSlash(hashq.from);
     fetch(cdnPath + 'world.yaml')
       .then(function(res) {
         return res.text();

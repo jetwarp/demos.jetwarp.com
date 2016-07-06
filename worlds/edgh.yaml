@@ -1,0 +1,232 @@
+cdn:
+  base: https://objects-us-west-1.dream.io/jetwarp-cdn/demos/2016-05-01
+
+rooms:
+
+- room: upperstairs
+  waypoints:
+  - lat: 15
+    lon: 22
+    dest: kitchen
+  - lat: 20
+    lon: 35
+    dest: upperlivingroom
+  - lat: -39
+    lon: 350
+    dest: lowerstairs
+  - lat: -4
+    lon: 203
+    dest: secorner
+  plates:
+  - lat: -15
+    lon: 270
+    title: Eagle Drum Giclée
+    body: >
+      This 2009 print, by Pacific Northwest wood carver Mitch Adams, is one of
+      a limited run of 200, inspired by the artwork of the native Tlingit
+      people. Furnishings such as this one may be included with the property,
+      at the purchaser's request.
+
+- room: kitchen
+  waypoints:
+  - lat: -5
+    lon: 263
+    dest: diningroom
+  - lat: -12
+    lon: 9
+    dest: upperstairs
+
+- room: diningroom
+  waypoints:
+  - lat: -8
+    lon: 260
+    dest: kitchen
+  - lat: -3
+    lon: 190
+    dest: upperlivingroom
+  - lat: -10
+    lon: 25
+    dest: patio
+
+- room: upperlivingroom
+  waypoints:
+  - lat: -4
+    lon: 248
+    dest: diningroom
+  - lat: -12
+    lon: 158
+    dest: upperstairs
+  - lat: -2
+    lon: 168
+    dest: upperbathroom
+
+- room: upperbathroom
+  waypoints:
+  - lat: -5
+    lon: 159
+    dest: upperlivingroom
+  - lat: -3
+    lon: 186
+    dest: upperbedroom1
+
+- room: upperbedroom1
+  waypoints:
+  - lat: -5
+    lon: 43
+    dest: upperbathroom
+  - lat: 2 # ARGH
+    lon: 339
+    dest: upperbedroom2
+
+- room: upperbedroom2
+  waypoints:
+  - lat: -4
+    lon: 21
+    dest: upperbedroom1
+
+- room: lowerstairs
+  waypoints:
+  - lat: 15
+    lon: 277
+    dest: upperstairs
+  - lat: -8
+    lon: 33
+    dest: lowerbedroom
+  - lat: -11
+    lon: 345
+    dest: office
+  - lat: -8
+    lon: 158
+    dest: laundryroom
+  - lat: -2
+    lon: 186
+    dest: lowerlivingroom
+
+- room: office
+  waypoints:
+  - lat: -3
+    lon: 99
+    dest: lowerstairs
+
+- room: lowerbedroom
+  waypoints:
+  - lat: -5
+    lon: 36
+    dest: lowerstairs
+
+- room: lowerlivingroom
+  waypoints:
+  - lat: -4
+    lon: 7
+    dest: lowerstairs
+
+- room: lowerbathroom
+  waypoints:
+  - lat: -8
+    lon: 358
+    dest: lowerstairs
+
+- room: laundryroom
+  waypoints:
+  - lon: -4
+    lat: 15
+    dest: lowerstairs
+  - lon: -8
+    lat: 184
+    dest: carport
+
+- room: carport
+  waypoints:
+  - lat: -4
+    lon: 47
+    dest: laundryroom
+  - lat: 3
+    lon: 344
+    dest: nwcorner
+  - lat: 0
+    lon: 171
+    dest: swcorner
+
+- room: patio
+  waypoints:
+  - lat: -11
+    lon: 189
+    dest: diningroom
+  - lat: -5
+    lon: 61
+    dest: nwcorner
+  - lat: -11
+    lon: 112
+    dest: necorner
+
+- room: necorner
+  waypoints:
+  - lat: 7
+    lon: 56
+    dest: patio
+  - lat: 0
+    lon: 144
+    dest: nwcorner
+  - lat: -2
+    lon: 326
+    dest: secorner
+
+- room: secorner
+  waypoints:
+  - lat: 8
+    lon: 172
+    dest: upperstairs
+  - lat: -2
+    lon: 87
+    dest: swcorner
+  - lat: 3
+    lon: 212
+    dest: necorner
+
+- room: nwcorner
+  waypoints:
+  - lat: -2
+    lon: 5
+    dest: carport
+  - lat: 6
+    lon: 345
+    dest: patio
+  - lat: -4
+    lon: 251
+    dest: necorner
+
+- room: swcorner
+  waypoints:
+  - lat: -1
+    lon: 126
+    dest: carport
+  - lat: -5
+    lon: 224
+    dest: secorner
+  - lat: -8
+    lon: 301
+    dest: upperstreet
+
+- room: upperstreet
+  waypoints:
+  - lat: 5
+    lon: 171
+    dest: swcorner
+  - lat: -6
+    lon: 274
+    dest: lowerstreet
+
+- room: lowerstreet
+  waypoints:
+  - lat: -4
+    lon: 184
+    dest: upperstreet
+  - lat: 0
+    lon: 0
+    dest: middlestreet
+
+- room: middlestreet
+  waypoints:
+  - lat: -2
+    lon: 181
+    dest: lowerstreet

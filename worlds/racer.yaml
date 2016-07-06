@@ -1,0 +1,25 @@
+cdn:
+  base: https://objects-us-west-1.dream.io/jetwarp-cdn/demos/racer
+
+rooms:
+
+- room: gallery
+  waypoints: [
+    { lat: 0,
+      lon: 340,
+      dest: 'bar' }]
+
+- room: bar
+  waypoints: [
+    { lat: 0,
+      lon: 180,
+      dest: 'backroom' },
+    { lat: 0,
+      lon: 50,
+      dest: 'gallery' }]
+
+- room: backroom
+  waypoints: [
+    { lat: 0,
+      lon: 180,
+      dest: 'bar' }]

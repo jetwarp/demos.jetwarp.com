@@ -38,8 +38,8 @@ rooms:
     lon: 180
     dest: bar
   plates:
-  - lat: -32
-    lon: 234
+  - lat: -20
+    lon: 247
     title: Hole in the World
     body: >
       This completely-black gap in this panorama is probably the worst artifact
